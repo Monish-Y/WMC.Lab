@@ -1,5 +1,6 @@
 # WMC.Lab
 
+
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head>
@@ -7,7 +8,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Task4</title><meta name="generator" content="MATLAB 9.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-09-25"><meta name="DC.source" content="Task4.m"><style type="text/css">
+      --><title>Task4</title><meta name="generator" content="MATLAB 9.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-10-02"><meta name="DC.source" content="Task4.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -219,12 +220,12 @@ hte = 1000; <span class="comment">% in m</span>
 hre = 10; <span class="comment">% in m</span>
 d = 50; <span class="comment">% in km</span>
 
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 
 L = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 
 fprintf(<span class="string">'%s %f %s\n'</span>,<span class="string">'The median path loss: '</span>,L,<span class="string">'dB'</span>);
-</pre><pre class="codeoutput">The median path loss:  119.583927 dB
+</pre><pre class="codeoutput">The median path loss:  126.583927 dB
 </pre><h2 id="9">Hata: Frequency vs. Path Loss</h2><pre class="codeinput">clc;
 clear <span class="string">all</span>;
 close <span class="string">all</span>;
@@ -235,7 +236,7 @@ hre = 3; <span class="comment">% in m</span>
 d = 10; <span class="comment">% in km</span>
 L = zeros(1,6);
 <span class="keyword">for</span> i=1:6
-    ahre = 0.8+(1.1*log10(fc(i)))*hre-1.56*log10(fc(i));
+    ahre = 0.8+(1.1*log10(fc(i))-0.7)*hre-1.56*log10(fc(i));
     L(i) = 69.55+26.16*log10(fc(i))-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 <span class="keyword">end</span>
 
@@ -251,7 +252,7 @@ fc = 900; <span class="comment">% in MHZ</span>
 hte = [50,100,300,500,800,1000]; <span class="comment">% in m</span>
 hre = 3; <span class="comment">% in m</span>
 d = 10; <span class="comment">% in km</span>
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 L = zeros(1,6);
 <span class="keyword">for</span> i=1:6
     L(i) = 69.55+26.16*log10(fc)-13.82*log10(hte(i))-ahre+(44.9-6.55*log10(hte(i)))*log10(d);
@@ -271,7 +272,7 @@ hre = [2,3,5,8,10]; <span class="comment">% in m</span>
 d = 10; <span class="comment">% in km</span>
 L = zeros(1,5);
 <span class="keyword">for</span> i=1:5
-    ahre = 0.8+(1.1*log10(fc))*hre(i)-1.56*log10(fc);
+    ahre = 0.8+(1.1*log10(fc)-0.7)*hre(i)-1.56*log10(fc);
     L(i) = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 <span class="keyword">end</span>
 
@@ -289,7 +290,7 @@ hre = 3; <span class="comment">% in m</span>
 d = 50; <span class="comment">% in km</span>
 
 <span class="comment">% Small or Medium City</span>
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 L1 = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 fprintf(<span class="string">'%s %f %s\n'</span>,<span class="string">'The median path loss of Small / Medium city: '</span>,L1,<span class="string">'dB'</span>);
 
@@ -307,7 +308,7 @@ plot(categorical([<span class="string">"Small/Medium"</span>,<span class="string
 xlabel(<span class="string">"City Size"</span>);
 ylabel(<span class="string">"Path Loss (dB)"</span>);
 title(<span class="string">"City Size vs. Path Loss (dB)"</span>);
-</pre><pre class="codeoutput">The median path loss of Small / Medium city:  159.769676 dB
+</pre><pre class="codeoutput">The median path loss of Small / Medium city:  161.869676 dB
 The median path loss of Large City:  163.020213 dB
 </pre><img vspace="5" hspace="5" src="Task4_08.png" alt=""> <h2 id="13">Okumura vs. Hata</h2><pre class="codeinput"><span class="comment">% Okumura and Hata</span>
 clc;
@@ -345,7 +346,7 @@ hte = 100; <span class="comment">% in m</span>
 hre = 10; <span class="comment">% in m</span>
 d = 50; <span class="comment">% in km</span>
 
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 
 L_Hata = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 
@@ -354,8 +355,8 @@ fprintf(<span class="string">'%s %f %s\n'</span>,<span class="string">'The media
 <span class="comment">% Difference</span>
 fprintf(<span class="string">'%s %f %s\n'</span>,<span class="string">'The difference between the path losses of Okumura and Hata Model: '</span>,L_Hata-L_Okumura,<span class="string">'dB'</span>);
 </pre><pre class="codeoutput">The median path loss of Okumura Model:  141.447166 dB
-The median path loss of Hata Model:  144.532181 dB
-The difference between the path losses of Okumura and Hata Model:  3.085015 dB
+The median path loss of Hata Model:  151.532181 dB
+The difference between the path losses of Okumura and Hata Model:  10.085015 dB
 </pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Okumura Model
@@ -522,7 +523,7 @@ hte = 1000; % in m
 hre = 10; % in m
 d = 50; % in km
 
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 
 L = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 
@@ -539,7 +540,7 @@ hre = 3; % in m
 d = 10; % in km
 L = zeros(1,6);
 for i=1:6
-    ahre = 0.8+(1.1*log10(fc(i)))*hre-1.56*log10(fc(i));
+    ahre = 0.8+(1.1*log10(fc(i))-0.7)*hre-1.56*log10(fc(i));
     L(i) = 69.55+26.16*log10(fc(i))-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 end
 
@@ -557,7 +558,7 @@ fc = 900; % in MHZ
 hte = [50,100,300,500,800,1000]; % in m
 hre = 3; % in m
 d = 10; % in km
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 L = zeros(1,6);
 for i=1:6
     L(i) = 69.55+26.16*log10(fc)-13.82*log10(hte(i))-ahre+(44.9-6.55*log10(hte(i)))*log10(d);
@@ -579,7 +580,7 @@ hre = [2,3,5,8,10]; % in m
 d = 10; % in km
 L = zeros(1,5);
 for i=1:5
-    ahre = 0.8+(1.1*log10(fc))*hre(i)-1.56*log10(fc);
+    ahre = 0.8+(1.1*log10(fc)-0.7)*hre(i)-1.56*log10(fc);
     L(i) = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 end
 
@@ -599,7 +600,7 @@ hre = 3; % in m
 d = 50; % in km
 
 % Small or Medium City
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 L1 = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 fprintf('%s %f %s\n','The median path loss of Small / Medium city: ',L1,'dB');
 
@@ -656,7 +657,7 @@ hte = 100; % in m
 hre = 10; % in m
 d = 50; % in km
 
-ahre = 0.8+(1.1*log10(fc))*hre-1.56*log10(fc);
+ahre = 0.8+(1.1*log10(fc)-0.7)*hre-1.56*log10(fc);
 
 L_Hata = 69.55+26.16*log10(fc)-13.82*log10(hte)-ahre+(44.9-6.55*log10(hte))*log10(d);
 
